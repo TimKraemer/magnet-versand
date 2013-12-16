@@ -6,3 +6,13 @@ body {
 option:nth-child(odd) {
   background-color: #efefef;
 }
+
+/* This doesn't actually belong here but it would be wasted space*/
+
+img {
+    border: solid 10px transparent;
+}
+
+img:hover {
+    border-color: black;
+}
