@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Att1: MyString
+  Att2: MyString
+  Att3: MyString
+  Att4: MyString
+  Att5: MyString
+  Att6: MyString
+  Att7: MyString
+
+two:
+  Att1: MyString
+  Att2: MyString
+  Att3: MyString
+  Att4: MyString
+  Att5: MyString
+  Att6: MyString
+  Att7: MyString

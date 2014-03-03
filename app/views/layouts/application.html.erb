@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Magnet Versand" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Magnet Versand" %>">
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <%= render 'layouts/navigation' %>
+  </header>
+  <div class="jumbotron">
+    <div class="container">
+      <br>
+      <br>
+      <p>Lassen Sie sich ein automatisches Angebot für Ihre gewünschten Magnete erstellen!</p>
+      <p><a class="btn btn-primary btn-md">Mehr Informationen &raquo;</a></p>
+    </div>
+  </div>
+  <%= render "layouts/shapes" %>
+  <hr>
+  <%= yield %>
+  <hr>
+  <%= render "layouts/basket" %>
+  <h3>Ihre Daten</h3>
+  <form>
+    <div class="form-group">
+      <textarea class="form-control" placeholder="Bitte geben Sie hier Ihre Referenz- oder Kommissions&shy;nummer ein" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success btn-block">
+        <span class="glyphicon glyphicon-send"></span> bestellen
+      </button>
+    </div>            
+  </form>
+</body>
+</html>
