@@ -1,14 +1,16 @@
 class MagnetsController < ApplicationController
 
   def index
-  	@allMagnets = Image.find(:all)
+  	@allMagnets = Magnet.find(:all)
   end
 
   def view
-  	@magnets = Image.find(params[:id])
-  	@poles  = Pole.find(params[:id])
-  	@attributes = Attribute.find(params[:id])
+    @choosenMagnet = Magnet.find_by(category: params[:category])
+  end
+
+  def create
   	@allMagnets = Image.find(:all)
+    @purchase = Magnet.create(params[:purchase].permit(:Attributes, :Pole,  :Marked, :Quality, :coating, :quantity))
   end
 
 end

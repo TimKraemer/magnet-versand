@@ -1,7 +1,6 @@
-<div class="container">
-  <h2>Bitte wählen Sie eine Form:</h2>
+<h2>Bitte wählen Sie eine Form:</h2>
   <div class="row">
   <% @allMagnets.each do |magnet| %>
-  <%= link_to image_tag(magnet.url , size: "80"), {:action => 'view', :controller => 'magnets', :id => magnet.id}, :class => 'img-responsive img-thumbnail', :border => "4" %>
+  <%= link_to image_tag(magnet.image_url , size: "80"), {:action => 'view', :controller => 'magnets', :category => magnet.category}, :class => 'img-responsive img-thumbnail', :border => "4" %>
   <% end %>
 </div>

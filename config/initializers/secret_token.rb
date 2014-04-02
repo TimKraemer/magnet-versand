@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-MagnetVersand::Application.config.secret_key_base = '6305d2a1eaef597410e5ea3510d0ea33c5cd0acf0da352832dd8d4935e35108f74df3a92a3179bac3aacc0714534ab6365eea4a9f06ec9b437be328d8c3a91c7'
+MagnetVersand::Application.config.secret_key_base = 'c19126ad3d70c480cfc8f5b0b769bd166399a91cc4e65eb3a26ffb09922c832eee160129fd3e085b7a0c1f3e7527db11970398dedc84e34dd8213b76a1bc6e17'

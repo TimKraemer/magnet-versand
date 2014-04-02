@@ -1,87 +1,61 @@
+<hr>
 <div class="row">
 	<div class="col-md-2">
-		<%= image_tag(@magnets.url)%>
+		<%= image_tag(@choosenMagnet.image_url , size: "130")%>
+	</div>
+	<%= form_for :purchase do |f| %>
+	<div class="col-md-2">
+		<h3>Maße</h3>
+			<% @attributes.attributes.each do |key,value| %>
+			<%if value.is_a? String %>
+			<div class="form-group">
+				<div class="input-group">
+					<%= f.text_field "attributes[#{value}]" , :placeholder => value ,class: "form-control" %>
+					<span class="input-group-addon">mm</span>
+				</div>
+			</div>
+			<% end %>
+			<% end %>
 	</div>
 
 	<div class="col-md-2">
-		<h3>Maße</h3>
-		<form>
-			<% @attributes.attributes.each do |key,value| %>
+		<h3>Pole</h3>
+			<div class="form-group">
+				<% @poles.attributes.each do |key,value| %>
 				<%if value.is_a? String %>
-					<div class="form-group">
-						<div class="input-group">
-							<input type="text" placeholder=<%= value %> class="form-control">
-							<span class="input-group-addon">mm</span>
-						</div>
+					<div class="radio">
+						<%= radio_button("purchase", "Pole", value) %><%= value %>
 					</div>
 				<% end %>
-			<% end %>
-		</form>
+				<% end %>
+			</div>
+			<%= check_box("purchase", "Kennzeichnen") %> Kennzeichnen?
+	</div>
+
+	<div class="col-md-2">
+		<h3>Güte</h3>
+			<div class="form-group">
+				<%= f.select(:quality, ["1.02T < 180°C", "1.02T < 200°C", "1.08T < 180°C", "1.13T < 180°C"], {}, { :class => 'form-control form-striped' }) %>
+				<option value=""></option>
+			</div>         
 	</div>
 	<div class="col-md-2">
-		<h3>Pole</h3>
-		<form>
+		<h3>Beschichtung</h3>
 			<div class="form-group">
-					<% @poles.attributes.each do |key,value| %>
-						<%if value.is_a? String %>
-							<div class="radio">
-				                <label>
-				                  <input type="radio" name="optionsRadios" id="pole" checked>
-				                  <%= value %>
-				                </label>
-				            </div>
-						<% end %>
-				<% end %>
-			</div>
-				<div class="form-group">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" value="northpole_marked">
-							Kennzeichnen?
-						</label>
-					</div>
-				</div>
-			</form>
+				<%= f.select(:coating, ["Keine", "Nickel", "Zink", "Silber", "Gold"], {}, { :class => 'form-control form-striped' }) %>
+			</div>         
+	</div>
+	<div class="col-md-2">
+		<h3>Warenkorb</h3>
+		<div class = "input-group">
+			<%= f.text_field :quantity, class: "form-control"%>
+			<span class ="input-group-addon"> Stck </span>
 		</div>
-		
-		<div class="col-md-2">
-			<h3>Güte</h3>
-			<form>
-				<div class="form-group">
-					<select multiple class="form-control form-striped">
-						<option value="">1.02T &lt;180&deg;C</option>
-						<option value="">1.02T &lt;200&deg;C</option>
-						<option value="">1.08T &lt;180&deg;C</option>
-						<option value="">1.13T &lt;180&deg;C</option>
-					</select>
-				</div>         
-			</form>
+		<div class= "form-group">
+			<%= button_tag(type: 'submit', class: "btn btn-block ") do %>
+			<span class="glyphicon glyphicon-shopping-cart"></span> hinzufügen
+			<% end %>
 		</div>
-		<div class="col-md-2">
-			<h3>Beschicht.</h3>
-			<form>
-				<div class="form-group">
-					<select multiple class="form-control form-striped">
-						<option value="">Ni - Nickel</option>
-						<option value="">Zn - Zink</option>
-						<option value="">Ag - Silber</option>
-						<option value="">Au - Gold</option>
-					</select>
-				</div>         
-			</form>
-		</div>
-		<div class="col-md-2">
-			<h3>Warenkorb</h3>
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" placeholder="Anzahl" class="form-control">
-					<span class="input-group-addon">Stck.</span>
-				</div>
-			</div>
-			<div class="form-group">
-				<button type="submit" class="btn btn-block">
-					<span class="glyphicon glyphicon-shopping-cart"></span> hinzufügen
-				</button>
-			</div>
-		</div>       
+		<% end %>
+
 	</div>

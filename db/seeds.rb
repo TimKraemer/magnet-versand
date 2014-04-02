@@ -7,46 +7,45 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) can be set in the file config/application.yml.
 # See http://railsapps.github.io/rails-environment-variables.html
-#/images/image.png
-#
 
-Image.create!(url: "public/1scheiben-stab.gif")
-Image.create!(url: "public/2quader-wuerfel.gif")
-Image.create!(url: "public/3Kugel.gif")
-Image.create!(url: "public/4Ring-vollmagnet.gif")
-Image.create!(url: "public/5senkung_vollmagnet.gif")
-Image.create!(url: "public/6flachgreifer_bohrung.gif")
-Image.create!(url: "public/7senkung_flachgreifer.gif")
-Image.create!(url: "public/8flachgreifer_buchse.gif")
-Image.create!(url: "public/9flachgreifer_gewinde.gif")
-Image.create!(url: "public/10Konus.gif")
-Image.create!(url: "public/11trap.png")
-Image.create!(url: "public/12beta_seg.png")
-Image.create!(url: "public/13loaf_72.png")
+dimensions = {}
+["H", "h1", "h2", "h3",  "h4", "h6", "D", "d1", "d2", "d3", "d4","d5",
+	"d6","L","B", "m","t","h","a","b","R","r","A","h"].each do |attr|
+	dimensions[attr] = Dimension.create(dime: attr)
+end
 
-Attribute.create!(Att1: "H", Att2: "D")
-Attribute.create!(Att1: "H", Att2: "L", Att3: "B")
-Attribute.create!(Att1: "D")
-Attribute.create!(Att1: "H", Att2: "D", Att3: "d1")
-Attribute.create!(Att1: "H", Att2: "h3", Att3: "D", Att4: "d2", Att5: "d3")
-Attribute.create!(Att1: "H", Att2: "h2", Att3: "D", Att4: "d4", Att5: "d5")
-Attribute.create!(Att1: "H", Att2: "h3", Att3: "D", Att4: "d2", Att5: "d3")
-Attribute.create!(Att1: "H", Att2: "h1", Att3: "h4", Att4: "h6", Att5: "D", Att6: "d6", Att7: "m")
-Attribute.create!(Att1: "H", Att2: "h1", Att3: "h4", Att4: "h6", Att5: "D", Att6: "m")
-Attribute.create!(Att1: "H", Att2: "d2", Att3: "d3")
-Attribute.create!(Att1: "t", Att2: "h", Att3: "a", Att4: "b")
-Attribute.create!(Att1: "R", Att2: "r", Att3: "A", Att4: "h")
-Attribute.create!(Att1: "h", Att2: "a", Att3: "b", Att4: "R")
 
-Pole.create!(Slot1: "H (Axial)", Slot2: "D (Diametral)")
-Pole.create!(Slot1: "H (Axial)")
-Pole.create!(Slot1: "H (Axial)")
-Pole.create!(Slot1: "H (Axial)", Slot2: "D (Diametral)")
-Pole.create!(Slot1: "H (Axial)")
-Pole.create!(Slot1: "H (Axial)")
-Pole.create!(Slot1: "H (Axial)", Slot2: "D (Diametral)")
-Pole.create!(Slot1: "H (Axial)")
-Pole.create!(Slot1: "H (Axial)")
-Pole.create!(Slot1: "H (Axial)", Slot2: "D (Diametral)")
-Pole.create!(Slot1: "Axial (N/S)", Slot2: "Axial (S/N)", Slot3: "Equatorial(N/S)", Slot4: "Equatorial (S/N)")
-Pole.create!(Slot1: "Axial", Slot2: "Diametral (S/N)", Slot3: "Diametral (N/S)", Slot4: "segmental")
+poleAttributes = {}
+[
+	"H (Axial)", "D (Diametral)" , "Axial (N/S)" , "Axial (S/N)",
+	"Equatorial (N/S)", "Equatorial (S/N)", " Axial", "Diametral (S/N)",
+	"Diametral (N/S)", "segmental", "Norden oben", "Norden unten"
+].each do |attr|
+	poleAttributes[attr] = Pole.create(pole: attr)
+end
+
+
+[
+	{attributes: {image_url: "public/1scheiben-stab.gif", category: "scheiben-stab"}, attrsrels: ["H", "D", "d3"], poles:["H (Axial)", "D (Diametral)"]},
+	{attributes: {image_url: "public/2quader-wuerfel.gif", category: "quader-wuerfel"}, attrsrels: ["D", "L" , "B"], poles:["H (Axial)"]},
+	{attributes: {image_url: "public/3Kugel.gif", category: "Kugel"}, attrsrels: ["D"], poles:["H (Axial)"]},
+	{attributes: {image_url: "public/4Ring-vollmagnet.gif", category: "Ring-vollmagnet" }, attrsrels: ["H","D","d1"], poles:["H (Axial)", "D (Diametral)"]},
+	{attributes: {image_url: "public/5senkung_vollmagnet.gif", category: "senkung-vollmagnet"}, attrsrels: ["H","h3","D","d2","d3"], poles:["H (Axial)"]},
+	{attributes: {image_url: "public/6flachgreifer_bohrung.gif", category: "flachgreifer-bohrung"}, attrsrels: ["H","h2","D","d4","d5"], poles:["H (Axial)"]},
+	{attributes: {image_url: "public/7senkung_flachgreifer.gif", category: "senkung-flachgreifer"}, attrsrels: ["H","h3","D","d2","d3"], poles:["H (Axial)", "D (Diametral)"]},
+	{attributes: {image_url: "public/8flachgreifer_buchse.gif", category: "flachgreifer-buchse"}, attrsrels: ["H","h1","h4","h6","D","d6","m"], poles:["H (Axial)"]},
+	{attributes: {image_url: "public/9flachgreifer_gewinde.gif", category: "flachgreifer-gewinde"}, attrsrels: ["H","h1","h4","h6","D","d6","m"], poles:["H (Axial)"]},
+	{attributes: {image_url: "public/10Konus.gif", category: "Konus"}, attrsrels: ["H","d2","d3"], poles:["H (Axial)", "D (Diametral)"]},
+	{attributes: {image_url: "public/11trap.png", category: "Trapez"}, attrsrels: ["t","h","a","b"], poles:["Axial(N/S)", "Axial(S/N)", "Equatorial(N/S)", "Equatorial(S/N)"]},
+	{attributes: {image_url: "public/12beta_seg.png", category: "Beta-seg"}, attrsrels: ["R","A","h","r"], poles:["Axial", "Diametral (N/S)", "Diametral (S/N)","segmental"]},
+	{attributes: {image_url: "public/13loaf_72.png", category: "loaf"}, attrsrels: ["h","a","b","R"], poles:["Norden oben", "Norden unten"]}
+].each do |data|
+	magnet = Magnet.create(data[:attributes])
+	data[:attrsrels].each do |foo|
+		magnet.magnet_dimensions.create(magnet_id: magnet.id ,dimension_id: dimensions[foo].id)
+	end
+	data[:poles].each do |bar|
+		magnet.magnets_poles.create(magnet_id: magnet.id ,pole_id: poleAttributes[foo].id)
+	end
+end
+

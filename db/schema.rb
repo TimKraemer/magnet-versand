@@ -11,30 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303013107) do
+ActiveRecord::Schema.define(version: 20140402181641) do
 
-  create_table "attributes", force: true do |t|
-    t.string "Att1"
-    t.string "Att2"
-    t.string "Att3"
-    t.string "Att4"
-    t.string "Att5"
-    t.string "Att6"
-    t.string "Att7"
+  create_table "dimensions", force: true do |t|
+    t.string   "dime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", force: true do |t|
     t.string   "url"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magnet_dimensions", force: true do |t|
+    t.integer  "magnet_id"
+    t.integer  "dimension_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magnets", force: true do |t|
+    t.string   "image_url"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magnets_poles", force: true do |t|
+    t.integer  "magnet_id"
+    t.integer  "pole_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "poles", force: true do |t|
-    t.string "Slot1"
-    t.string "Slot2"
-    t.string "Slot3"
-    t.string "Slot4"
-    t.string "Slot5"
+    t.string "pole"
   end
 
 end
