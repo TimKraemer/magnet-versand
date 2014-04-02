@@ -6,27 +6,24 @@
 	<%= form_for :purchase do |f| %>
 	<div class="col-md-2">
 		<h3>Maße</h3>
-			<% @attributes.attributes.each do |key,value| %>
-			<%if value.is_a? String %>
+			<% @choosenMagnet.magnet_dimensions.where("magnet_id = "+@choosenMagnet.id.to_s).each do |mag| %>
+			
 			<div class="form-group">
 				<div class="input-group">
-					<%= f.text_field "attributes[#{value}]" , :placeholder => value ,class: "form-control" %>
+					<%= f.text_field "attributes[#{Dimension.find(mag.dimension_id).dime}]" , :placeholder => Dimension.find(mag.dimension_id).dime ,class: "form-control" %>
 					<span class="input-group-addon">mm</span>
 				</div>
 			</div>
-			<% end %>
 			<% end %>
 	</div>
 
 	<div class="col-md-2">
 		<h3>Pole</h3>
 			<div class="form-group">
-				<% @poles.attributes.each do |key,value| %>
-				<%if value.is_a? String %>
+				<% @choosenMagnet.magnet_poles.where("magnet_id = "+@choosenMagnet.id.to_s).each do |pole| %>
 					<div class="radio">
-						<%= radio_button("purchase", "Pole", value) %><%= value %>
+						<%= radio_button("purchase", "Pole", Pole.find(pole.pole_id).pol) %><%= Pole.find(pole.pole_id).pol%>
 					</div>
-				<% end %>
 				<% end %>
 			</div>
 			<%= check_box("purchase", "Kennzeichnen") %> Kennzeichnen?

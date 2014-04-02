@@ -6,7 +6,7 @@
 	<%= form_for :purchase do |f| %>
 	<div class="col-md-2">
 		<h3>Maße</h3>
-			<% @attributes.attributes.each do |key,value| %>
+			<% @choosenMagnet.magnet_dimensions.where("magnet_id = 1").all.each do |key,value| %>
 			<%if value.is_a? String %>
 			<div class="form-group">
 				<div class="input-group">

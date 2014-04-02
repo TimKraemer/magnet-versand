@@ -6,6 +6,7 @@ class MagnetsController < ApplicationController
 
   def view
     @choosenMagnet = Magnet.find_by(category: params[:category])
+    @allMagnets = Magnet.find(:all)
   end
 
   def create

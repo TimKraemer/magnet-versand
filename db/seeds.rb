@@ -14,14 +14,11 @@ dimensions = {}
 	dimensions[attr] = Dimension.create(dime: attr)
 end
 
-
 poleAttributes = {}
-[
-	"H (Axial)", "D (Diametral)" , "Axial (N/S)" , "Axial (S/N)",
-	"Equatorial (N/S)", "Equatorial (S/N)", " Axial", "Diametral (S/N)",
-	"Diametral (N/S)", "segmental", "Norden oben", "Norden unten"
-].each do |attr|
-	poleAttributes[attr] = Pole.create(pole: attr)
+["H (Axial)", "D (Diametral)" , "Axial (N/S)" , "Axial (S/N)","Equatorial (N/S)", 
+	"Equatorial (S/N)", "Axial", "Diametral (S/N)",	"Diametral (N/S)", "segmental",
+	 "Norden oben", "Norden unten"].each do |attr|
+	poleAttributes[attr] = Pole.create(pol: attr)
 end
 
 
@@ -36,7 +33,7 @@ end
 	{attributes: {image_url: "public/8flachgreifer_buchse.gif", category: "flachgreifer-buchse"}, attrsrels: ["H","h1","h4","h6","D","d6","m"], poles:["H (Axial)"]},
 	{attributes: {image_url: "public/9flachgreifer_gewinde.gif", category: "flachgreifer-gewinde"}, attrsrels: ["H","h1","h4","h6","D","d6","m"], poles:["H (Axial)"]},
 	{attributes: {image_url: "public/10Konus.gif", category: "Konus"}, attrsrels: ["H","d2","d3"], poles:["H (Axial)", "D (Diametral)"]},
-	{attributes: {image_url: "public/11trap.png", category: "Trapez"}, attrsrels: ["t","h","a","b"], poles:["Axial(N/S)", "Axial(S/N)", "Equatorial(N/S)", "Equatorial(S/N)"]},
+	{attributes: {image_url: "public/11trap.png", category: "Trapez"}, attrsrels: ["t","h","a","b"], poles:["Axial (N/S)", "Axial (S/N)", "Equatorial (N/S)", "Equatorial (S/N)"]},
 	{attributes: {image_url: "public/12beta_seg.png", category: "Beta-seg"}, attrsrels: ["R","A","h","r"], poles:["Axial", "Diametral (N/S)", "Diametral (S/N)","segmental"]},
 	{attributes: {image_url: "public/13loaf_72.png", category: "loaf"}, attrsrels: ["h","a","b","R"], poles:["Norden oben", "Norden unten"]}
 ].each do |data|
@@ -45,7 +42,7 @@ end
 		magnet.magnet_dimensions.create(magnet_id: magnet.id ,dimension_id: dimensions[foo].id)
 	end
 	data[:poles].each do |bar|
-		magnet.magnets_poles.create(magnet_id: magnet.id ,pole_id: poleAttributes[foo].id)
+		magnet.magnet_poles.create(magnet_id: magnet.id ,pole_id: poleAttributes[bar].id)
 	end
 end
 

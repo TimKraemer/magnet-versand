@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140402181641) do
+ActiveRecord::Schema.define(version: 20140402194922) do
 
   create_table "dimensions", force: true do |t|
     t.string   "dime"
@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20140402181641) do
     t.datetime "updated_at"
   end
 
+  create_table "magnet_poles", force: true do |t|
+    t.string   "magnet_id"
+    t.string   "pole_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "magnets", force: true do |t|
     t.string   "image_url"
     t.string   "category"
@@ -40,15 +47,10 @@ ActiveRecord::Schema.define(version: 20140402181641) do
     t.datetime "updated_at"
   end
 
-  create_table "magnets_poles", force: true do |t|
-    t.integer  "magnet_id"
-    t.integer  "pole_id"
+  create_table "poles", force: true do |t|
+    t.string   "pol"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "poles", force: true do |t|
-    t.string "pole"
   end
 
 end
